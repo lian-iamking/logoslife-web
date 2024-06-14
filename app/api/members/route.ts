@@ -4,6 +4,7 @@ import { NextResponse } from 'next/server';
 const boot: string[] = ['Hey', 'Hola'];
 
 export async function GET() {
+  const result = await sql`GET * FROM members;`;
   return NextResponse.json({ boot });
 }
 
