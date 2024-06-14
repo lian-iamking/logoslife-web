@@ -1,45 +1,75 @@
 import React from 'react';
 import NavigationLink, { NavigationLinkProps } from './NavigationLink';
 import NavigationMenuButton from './NavigationMenuButton';
+import Logo from './../../public/static/images/LogosLife-Logo.svg';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Page } from '../shared/interfaces/page_interface';
 
-const pages: NavigationLinkProps[] = [
-  { id: 1, name: "About", path: "/about", isActive: true },
-  { id: 2, name: "Contact", path: "/contact", isActive: true },
-  { id: 3, name: "Giving", path: "/giving", isActive: true, highlight: true},
-  { id: 4, name: "Sermons", path: "/sermons", isActive: false }
+export const pages: Page[] = [
+  { id: 1, title: 'Home', description: '', path: '/', showOnNavMenu: false },
+  {
+    id: 2,
+    title: 'About',
+    description: '',
+    path: '/about',
+    showOnNavMenu: true,
+  },
+  {
+    id: 3,
+    title: 'Contact',
+    description: '',
+    path: '/contact',
+    showOnNavMenu: true,
+  },
+  {
+    id: 4,
+    title: 'Giving',
+    description: '',
+    path: '/giving',
+    showOnNavMenu: true,
+    isHighlighted: true,
+  },
+  {
+    id: 5,
+    title: 'Sermons',
+    description: '',
+    path: '/sermons',
+    showOnNavMenu: false,
+  },
 ];
 
 const Navigation = () => {
   return (
     <nav className="flex items-center justify-between flex-wrap bg-white py-4 shadow-lg">
-      <div className="flex items-center flex-shrink-0 text-white mr-6">
-        <svg
-          className="fill-current h-8 w-8 mr-2"
-          width="54"
-          height="54"
-          viewBox="0 0 54 54"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z" />
-        </svg>
-        <span className="font-semibold text-xl tracking-tight">
-          Logos Life
-        </span>
+      <div className="flex items-center flex-shrink-0 text-white mx-6">
+        <Link href="/" className="">
+          <Image width="25" src={Logo} alt={'Logos Life logo'}></Image>
+        </Link>
       </div>
       <div className="block lg:hidden">
         <NavigationMenuButton />
       </div>
-      <div className="w-full block flex-grow text-center lg:flex lg:w-auto">
+      <div
+        id="nav-menu"
+        className="hidden w-full lg:flex lg:w-auto text-center"
+      >
         <div className="text-md lg:flex-grow">
-          {pages.map((page) => (
-              page.isActive ? <NavigationLink key={page.id}
-              id={page.id}
-              name={page.name}
-              path={page.path}
-              isActive={page.isActive}
-              highlight={page.highlight}
-            /> : <></>
-          ))}
+          {pages.map((page, i) =>
+            page.showOnNavMenu ? (
+              <NavigationLink
+                key={i}
+                id={page.id}
+                title={page.title}
+                description={page.description}
+                path={page.path}
+                showOnNavMenu={page.showOnNavMenu}
+                isHighlighted={page.isHighlighted}
+              />
+            ) : (
+              <></>
+            )
+          )}
         </div>
       </div>
     </nav>
