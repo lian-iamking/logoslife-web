@@ -1,20 +1,22 @@
 import React from 'react';
 
 export interface NavigationLinkProps {
+  id: number;
   name: string;
   path: string;
   isActive: boolean;
+  highlight?: boolean;
 }
 
-const NavigationLink = ({ name, path, isActive }: NavigationLinkProps) => {
+const NavigationLink = ({ id, name, path, isActive, highlight }: NavigationLinkProps) => {
   return (
-    <a
+    <a id={"nav-link-".concat(id.toString())}
       href={path}
-      className={'block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 '.concat(
-        isActive ? '' : 'no'
-      )}
+      className={'block mt-4 mx-5 lg:inline-block lg:mt-0 '.concat(
+        isActive ? "" : ""
+      ).concat(highlight ? "text-red-400 " : "text-slate-900 ")}
     >
-      {name}
+      {name.toUpperCase()}
     </a>
   );
 };

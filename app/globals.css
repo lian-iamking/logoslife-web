@@ -13,5 +13,13 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  @apply bg-neutral-100;
+  @apply text-slate-900;
+}
+
+body>main{
+  @apply md:mx-20;
+  @apply lg:mx-40;
+  @apply md:mt-5;
+  @apply lg:mt-10;
 }
