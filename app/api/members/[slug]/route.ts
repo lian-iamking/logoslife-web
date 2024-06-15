@@ -1,9 +1,9 @@
 import { fetchAMember } from "@/app/lib/data";
 import { Member } from "@/app/shared/interfaces/member_interface";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import moment from "moment";
 
-export async function GET(
+export async function GET(req: NextRequest,
     { params }: { params: { slug: string } }
 ) {
     if (!params.slug || params.slug == '')
