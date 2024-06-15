@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import moment from "moment";
 
 export async function GET(req: NextRequest,
-    { params }: { params: { slug: string } }
+     params: { slug: string }
 ) {
     if (!params.slug || params.slug == '')
         return NextResponse.json("memberId parameter is empty or invalid", { status: 400 });
