@@ -1,3 +1,7 @@
+export interface MemberRequest {
+  memberId: string
+}
+
 export interface Member {
   memberId: string;
   prefix: string;
@@ -7,5 +11,5 @@ export interface Member {
   lastName: string;
   knownName: string;
   gender: string;
-  birthDate: string | Date;
+  birthDate: string;
 }
